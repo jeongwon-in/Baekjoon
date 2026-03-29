@@ -1,9 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
-#define SIZE(a) (sizeof(a)/sizeof((a)[0]))
-
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
 
 #define MAX_N (8)
 
@@ -14,20 +9,14 @@ char map[52][52];
 
 int solve() {
 
-	for (int i = 0; i <= N - 8; ++i) {
-		for (int j = 0; j <= M - 8; ++j) {
-			int cntB = 0;
-			int cntW = 0;
+	// 8 * 8이 가능한 시작점
+	for (int i = 0; i <= N - MAX_N; ++i) {
+		for (int j = 0; j <= M - MAX_N; ++j) {
+			int cntB = 0; // 시작점이 B라고 할때의 카운트
 
-			for (int k = 0; k < 8; ++k) {
-				for (int l = 0; l < 8; ++l) {
-					if ((k + l) % 2 == 0 && map[i + k][j + l] != 'W') {
-						cntW++;
-					}
-					else if ((k + l) % 2 == 1 && map[i + k][j + l] != 'B') {
-						cntW++;
-					}
-
+			for (int k = 0; k < MAX_N; ++k) {
+				for (int l = 0; l < MAX_N; ++l) {
+					// B일때
 					if ((k + l) % 2 == 0 && map[i + k][j + l] != 'B') {
 						cntB++;
 					}
@@ -36,14 +25,10 @@ int solve() {
 					}
 				}
 			}
-			int total = 0;
-			if (cntB < min || cntW < min) {
-				total = cntB < cntW ? cntB : cntW;
+			int cntW = MAX_N * MAX_N - cntB;
+			int curr_min = cntB < cntW ? cntB : cntW;
+			if (curr_min < min) min = curr_min;
 
-				if (total < min) {
-					min = total;
-				}
-			}
 		}
 	}
 	return min;
