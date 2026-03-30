@@ -35,15 +35,18 @@ int solve(void) {
 		for (i = 0; i < 3; ++i) {
 			nX = curr.X + dX[i];
 
-			if (nX < 0 || nX > MAX_N) continue;
+			if (nX < 0 || nX >= MAX_N) continue;
 
 			if (subin[nX] == 0) {
 				Queue[rear++] = (node){ nX };
 				subin[nX] = subin[curr.X] + 1;
+
+				if (nX == K) {
+					return subin[K] - 1;
+				}
 			}
 		}
 	}
-	return subin[K] - 1;
 }
 
 void inputData(void) {
