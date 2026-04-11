@@ -3,53 +3,49 @@
 #include <string>
 using namespace std;
 
-int N;
-string command[5] = { "push", "pop", "size", "empty", "top" };
-
 int main(void) {
+	int N;
 
 	ios::sync_with_stdio(0);
 	cin.tie(0);
 
 	cin >> N;
 
-	stack<int> stack;
+	stack<int> stk;
 
 	for (int i = 0; i < N; ++i) {
 
 		string cmd;
 		cin >> cmd;
 
-		if (!cmd.compare(command[0])) {
+		if (cmd == "push") {
 			int X;
 			cin >> X;
-			stack.push(X);
+			stk.push(X);
 		}
-		else if (!cmd.compare(command[1])) {
-			if (stack.empty()) {
+		else if (cmd == "pop") {
+			if (stk.empty()) {
 				cout << -1 << "\n";
 			}
 			else {
-				cout << stack.top() << "\n";
-				stack.pop();
+				cout << stk.top() << "\n";
+				stk.pop();
 			}
 		}
-		else if (!cmd.compare(command[2])) {
-			cout << stack.size() << "\n";
+		else if (cmd == "size") {
+			cout << stk.size() << "\n";
 		}
-		else if (!cmd.compare(command[3])) {
-			cout << stack.empty() << "\n";
+		else if (cmd == "empty") {
+			cout << stk.empty() << "\n";
 		}
-		else if (!cmd.compare(command[4])) {
-			if (stack.empty()) {
+		else if (cmd == "top") {
+			if (stk.empty()) {
 				cout << -1 << "\n";
 			}
 			else {
-				cout << stack.top() << "\n";
+				cout << stk.top() << "\n";
 			}
 		}
-
 	}
-
 	return 0;
 }
