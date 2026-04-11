@@ -3,13 +3,9 @@
 #include <string>
 using namespace std;
 
-int main(void) {
-	int N;
+int N;
 
-	ios::sync_with_stdio(0);
-	cin.tie(0);
-
-	cin >> N;
+void solve(void) {
 
 	stack<int> stk;
 
@@ -47,5 +43,16 @@ int main(void) {
 			}
 		}
 	}
+
+}
+
+int main(void) {
+	ios::sync_with_stdio(0);
+	cin.tie(0);
+
+	cin >> N;
+
+	solve();
+
 	return 0;
 }
